@@ -1,0 +1,376 @@
+/* diario.css */
+:root {
+    /* Paleta de colores consistente con metas.css y logros.css */
+    --color1: #8F87F1;
+    --color2: #C68EFD;
+    --color3: #E9A5F1;
+    --color4: #FED2E2;
+    --bg-gradient: linear-gradient(135deg, var(--color1), var(--color4));
+
+    /* Modos Claro/Oscuro */
+    --text-color-light: #333;
+    --bg-color-light: var(--bg-gradient); /* Usamos el mismo gradiente que en metas/logros */
+    --card-bg-light: rgba(255, 255, 255, 0.95);
+    --card-border-light: rgba(0,0,0,0.08); /* Un borde un poco más sutil */
+    --header-bg-light: rgba(255, 255, 255, 0.85);
+    --modal-bg-light: #fefefe;
+    --input-bg-light: #fff;
+    --input-border-light: #ccc;
+    --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.08);
+    --hero-text-light: var(--color1); /* Color del título del hero en modo claro */
+    --entry-meta-light: #667; /* Un gris un poco más oscuro para mejor contraste */
+
+
+    --text-color-dark: #e0e0e0;
+    --bg-color-dark: #121212; /* Mismo fondo oscuro que metas/logros */
+    --card-bg-dark: rgba(40, 40, 40, 0.95); /* Mismo fondo de tarjeta oscuro */
+    --card-border-dark: rgba(255,255,255,0.08); /* Borde sutil en modo oscuro */
+    --header-bg-dark: rgba(25, 25, 25, 0.9); /* Mismo header oscuro */
+    --modal-bg-dark: #2c2c2c; /* Mismo modal oscuro */
+    --input-bg-dark: #333; /* Mismos inputs oscuros */
+    --input-border-dark: #444;
+    --shadow-dark: 0 4px 20px rgba(0, 0, 0, 0.25);
+    --hero-text-dark: var(--color2);
+    --entry-meta-dark: #aaa;
+
+    --border-radius-main: 12px;
+    --border-radius-small: 6px;
+    --transition-speed: 0.3s;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif; /* Consistente con metas.css */
+    margin: 0;
+    background: var(--bg-color-light);
+    color: var(--text-color-light);
+    transition: background var(--transition-speed) ease, color var(--transition-speed) ease;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+body.dark {
+    background: var(--bg-color-dark);
+    color: var(--text-color-dark);
+}
+
+.site-header {
+    background: var(--header-bg-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.07);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background var(--transition-speed) ease;
+}
+body.dark .site-header {
+    background: var(--header-bg-dark);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.site-header .logo { color: var(--color1); font-size: 1.5rem; font-weight: bold;}
+body.dark .site-header .logo { color: var(--color2); }
+
+.nav a { margin-left: 1.5rem; color: var(--text-color-light); text-decoration: none; transition: color 0.3s; font-weight: 500;}
+.nav a.active, .nav a:hover { color: var(--color1); }
+body.dark .nav a { color: var(--text-color-dark); }
+body.dark .nav a.active, body.dark .nav a:hover { color: var(--color2); }
+
+#darkModeToggle { background: transparent; color: var(--text-color-light); border: none; font-size: 1.5rem; cursor: pointer; padding: 0.5rem; border-radius: 50%; transition: color var(--transition-speed) ease, background-color var(--transition-speed) ease; }
+body.dark #darkModeToggle { color: var(--text-color-dark); }
+#darkModeToggle:hover { background-color: rgba(0,0,0,0.05); }
+body.dark #darkModeToggle:hover { background-color: rgba(255,255,255,0.1); }
+
+
+.page-content {
+    flex: 1;
+    padding: 2rem;
+    max-width: 900px; /* Un poco más estrecho para formato blog */
+    margin: 0 auto;
+}
+
+.journal-hero {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 3rem 1rem; /* Ajustamos padding si es necesario */
+    border-bottom: 1px solid var(--card-border-light);
+    background-image: url('banner-diario.jpg'); /*! CAMBIA ESTO por tu imagen de banner para el diario */
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    border-radius: var(--border-radius-main); /* Opcional: redondear esquinas del banner */
+    position: relative; /* Para el overlay */
+    color: var(--text-color-dark); /* Texto oscuro sobre banner claro, o blanco si el banner es oscuro */
+}
+
+.journal-hero::before { /* Overlay para legibilidad del texto */
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(255,255,255, 0.3); /* Overlay claro para banner en modo claro, o oscuro si el banner es claro */
+    border-radius: var(--border-radius-main); /* Si el hero tiene esquinas redondeadas */
+    z-index: 1;
+}
+
+body.dark .journal-hero {
+    border-bottom: 1px solid var(--card-border-dark);
+}
+body.dark .journal-hero::before {
+    background-color: rgba(0,0,0, 0.45); /* Overlay oscuro para banner en modo oscuro */
+}
+
+
+.journal-hero h1 {
+    color: var(--hero-text-light);
+    font-size: 2.8rem;
+    margin-bottom: 0.75rem;
+    font-weight: 700;
+    position: relative; z-index: 2; /* Sobre el overlay */
+}
+body.dark .journal-hero h1 {
+    color: var(--text-color-dark); /* Asegurar que el título sea legible en modo oscuro sobre el banner */
+}
+.journal-hero h1, .journal-hero p, .journal-hero .btn-primary {
+    position: relative; z-index: 2; /* Asegura que el contenido esté sobre el overlay */
+}
+
+.journal-hero p {
+    font-size: 1.2rem;
+    color: var(--text-color-light); /* Ajustar para legibilidad sobre banner */
+    margin-bottom: 1.5rem;
+}
+body.dark .journal-hero p {
+    color: var(--text-color-dark); /* Ajustar para legibilidad sobre banner en modo oscuro */
+}
+
+.btn-primary {
+    background: var(--color1);
+    color: #fff;
+    padding: 0.8rem 1.8rem;
+    border: none;
+    border-radius: var(--border-radius-small);
+    cursor: pointer;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: background var(--transition-speed) ease, transform var(--transition-speed) ease;
+    display: inline-flex; /* Para alinear icono y texto */
+    align-items: center;
+    gap: 0.5em; /* Espacio entre icono y texto */
+}
+.btn-primary:hover {
+    background: var(--color2);
+    transform: translateY(-2px);
+}
+body.dark .btn-primary {
+    background: var(--color2);
+    color: var(--bg-color-dark);
+}
+body.dark .btn-primary:hover {
+    background: var(--color3);
+}
+
+.journal-entries-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.journal-entry-card {
+    background: var(--card-bg-light);
+    border: 1px solid var(--card-border-light);
+    border-radius: var(--border-radius-main);
+    padding: 1.5rem 2rem;
+    box-shadow: var(--shadow-light);
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+.journal-entry-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+body.dark .journal-entry-card {
+    background: var(--card-bg-dark);
+    border: 1px solid var(--card-border-dark);
+    box-shadow: var(--shadow-dark);
+}
+body.dark .journal-entry-card:hover {
+    box-shadow: 0 6px 25px rgba(0,0,0,0.3);
+}
+
+.entry-image-container {
+    width: 100%;
+    max-height: 350px; /* Altura máxima para la imagen */
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    border-radius: var(--border-radius-small);
+}
+.entry-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cubre el contenedor, puede recortar */
+    display: block;
+}
+
+.entry-header {
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px dashed var(--card-border-light);
+}
+body.dark .entry-header {
+    border-bottom: 1px dashed var(--card-border-dark);
+}
+
+.entry-header h2 {
+    font-size: 1.8rem;
+    color: var(--color1);
+    margin: 0 0 0.25rem 0;
+    font-weight: 600;
+}
+body.dark .entry-header h2 {
+    color: var(--color2);
+}
+
+.entry-meta {
+    font-size: 0.85rem;
+    color: var(--text-color-light); /* Usar el color de texto principal para meta datos */
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+body.dark .entry-meta {
+    color: var(--entry-meta-dark);
+}
+.entry-meta .entry-date {
+    font-weight: 500;
+}
+.entry-meta .entry-tags span {
+    background-color: rgba(var(--color1RGB, 143, 135, 241), 0.15); /* Usar RGB de color1 para transparencia */
+    color: var(--color1);
+    padding: 0.2em 0.6em;
+    border-radius: var(--border-radius-small);
+    font-size: 0.8em;
+    margin-left: 0.5em;
+}
+body.dark .entry-meta .entry-tags span { /* Tags en modo oscuro */
+    background-color: rgba(198, 142, 253, 0.15);
+    color: var(--color2);
+}
+
+
+.entry-content {
+    font-size: 1.05rem;
+    white-space: pre-wrap; /* Conserva saltos de línea y espacios */
+    word-wrap: break-word;
+}
+.entry-content p:first-child {
+    margin-top: 0;
+}
+.entry-content p:last-child {
+    margin-bottom: 0;
+}
+
+.entry-actions {
+    margin-top: 1.5rem;
+    text-align: right;
+}
+.entry-actions .btn-icon {
+    background: transparent;
+    border: none;
+    color: var(--text-color-light); /* Iconos con color de texto principal */
+    font-size: 1.1rem;
+    margin-left: 0.8rem;
+    cursor: pointer;
+    padding: 0.3rem;
+}
+.entry-actions .btn-icon:hover {
+    color: var(--color1); /* Hover con color primario */
+}
+body.dark .entry-actions .btn-icon {
+    color: var(--entry-meta-dark);
+}
+body.dark .entry-actions .btn-icon:hover {
+    color: var(--color2);
+}
+
+
+.no-entries-message {
+    text-align: center;
+    font-size: 1.1rem;
+    padding: 2rem;
+    color: var(--text-color-light);
+}
+body.dark .no-entries-message {
+    color: var(--text-color-dark);
+}
+
+/* Modal Styles (reutilizados y adaptados de metas.css/logros.css) */
+.modal {
+    display: none; position: fixed; z-index: 1001; left: 0; top: 0; width: 100%; height: 100%;
+    overflow: auto; background-color: rgba(0,0,0,0.6);
+    align-items: center; justify-content: center;
+    opacity: 0; visibility: hidden;
+    transition: opacity var(--transition-speed) ease, visibility var(--transition-speed) ease;
+}
+.modal.active { display: flex; opacity: 1; visibility: visible; }
+
+.modal-content {
+    background-color: var(--modal-bg-light); color: var(--text-color-light);
+    margin: auto; padding: 2rem; border: none; width: 90%; max-width: 700px; /* Más ancho para el editor */
+    border-radius: var(--border-radius-main); box-shadow: var(--shadow-dark);
+    position: relative; transform: scale(0.95);
+    transition: transform var(--transition-speed) ease, background var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+.modal.active .modal-content { transform: scale(1); }
+body.dark .modal-content { background-color: var(--modal-bg-dark); color: var(--text-color-dark); }
+
+.modal-content h2 { color: var(--color1); margin-top: 0; margin-bottom: 1.5rem; text-align: center; }
+body.dark .modal-content h2 { color: var(--color2); }
+
+.close-button {
+    color: #888; position: absolute; top: 1rem; right: 1.5rem;
+    font-size: 2rem; font-weight: bold; line-height: 1; cursor: pointer;
+    transition: color var(--transition-speed) ease;
+}
+.close-button:hover, .close-button:focus { color: var(--color1); text-decoration: none; }
+body.dark .close-button { color: #aaa; }
+body.dark .close-button:hover, body.dark .close-button:focus { color: var(--color2); }
+
+#journalEntryForm .field { margin-bottom: 1.2rem; }
+#journalEntryForm label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+#journalEntryForm input[type="text"],
+#journalEntryForm textarea {
+    width: 100%; padding: 0.8rem; background-color: var(--input-bg-light);
+    border: 1px solid var(--input-border-light); color: var(--text-color-light);
+    border-radius: var(--border-radius-small); box-sizing: border-box;
+    transition: border-color var(--transition-speed) ease, background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+    font-family: inherit; /* Asegura que use la fuente del body */
+    font-size: 1rem;
+}
+body.dark #journalEntryForm input[type="text"],
+body.dark #journalEntryForm textarea {
+    background-color: var(--input-bg-dark); border: 1px solid var(--input-border-dark); color: var(--text-color-dark);
+}
+#journalEntryForm input[type="text"]:focus,
+#journalEntryForm textarea:focus {
+    outline: none; border-color: var(--color1); box-shadow: 0 0 0 2px rgba(143, 135, 241, 0.3);
+}
+body.dark #journalEntryForm input[type="text"]:focus,
+body.dark #journalEntryForm textarea:focus {
+    border-color: var(--color2); box-shadow: 0 0 0 2px rgba(198, 142, 253, 0.3);
+}
+#journalEntryForm textarea { min-height: 150px; resize: vertical; }
+#journalEntryForm button[type="submit"] { margin-top: 1rem; }
+
+
+.site-footer {
+    text-align: center; padding: 1.5rem; background: var(--header-bg-light);
+    color: var(--text-color-light); margin-top: auto; font-size: 0.9rem;
+    transition: background var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+body.dark .site-footer { background: var(--header-bg-dark); color: var(--text-color-dark); }
+
+.hidden { display: none !important; }

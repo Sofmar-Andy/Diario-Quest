@@ -1,0 +1,290 @@
+/* principal estilo.css */
+
+/*
+ * Variables CSS:
+ * --color1 a --color4: paleta principal de colores.
+ * --bg-gradient: gradiente de fondo.
+ * --text-color: color de texto en tema claro.
+ * --dark-bg: color de fondo en tema oscuro.
+ * --dark-text: color de texto en tema oscuro.
+ */
+
+.hero {
+    /* ... (tus estilos existentes para .hero pueden estar aquí) ... */
+    
+    /* --- ESTILOS PARA EL BANNER --- */
+    background-image: url('banner-lindo.png');
+    background-size: cover; /* Hace que la imagen cubra todo el área del hero */
+    background-position: center center; /* Centra la imagen de fondo */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    
+    padding: 100px 20px; /* Ajusta el padding para dar espacio al contenido sobre el banner y asegurar que se vea */
+    text-align: center; /* Centra el texto dentro del hero */
+    color: white; /* Color de texto blanco para buena legibilidad sobre la mayoría de los banners */
+    position: relative; /* Necesario para el pseudo-elemento ::before si usas un overlay */
+    min-height: 400px; /* Dale una altura mínima para que el banner sea visible incluso con poco contenido */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+body:not(.dark) .hero::before {
+    background-color: rgba(255, 255, 255, 0.1); /* Overlay muy sutil blanco para modo claro, si se desea */
+}
+
+/* Opcional: Añadir un overlay oscuro para mejorar la legibilidad del texto sobre el banner */
+.hero::before {
+    content: ""; /* Necesario para que el pseudo-elemento se muestre */
+    position: absolute; /* Posicionamiento absoluto respecto al .hero */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.2); /* Overlay oscuro sutil por defecto (para modo oscuro) */
+    z-index: 1; /* Coloca el overlay detrás del contenido del hero */
+}
+
+/* Asegúrate de que el contenido del hero (h1, p, btn) esté por encima del overlay */
+.hero h1,
+.hero p,
+.hero .btn {
+    position: relative; /* Para que z-index funcione */
+    z-index: 2; /* Coloca el contenido por encima del overlay */
+}
+
+/* ... (resto de tus estilos en principal estilo.css) ... */
+
+:root {
+    --color1: #8F87F1;
+    --color2: #C68EFD;
+    --color3: #E9A5F1;
+    --color4: #FED2E2;
+    --bg-gradient: linear-gradient(135deg, var(--color1), var(--color4));
+    --text-color: #333;
+    --dark-bg: #121212;
+    --dark-text: #e0e0e0;
+}
+
+/* Estilos globales y transición suave para background y color */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: background 0.3s, color 0.3s;
+}
+
+/* Layout base: fuente, fondo, color y flex vertical */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: var(--bg-gradient);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Tema oscuro: aplica colores de fondo y texto alternativos */
+body.dark {
+    background: var(--dark-bg);
+    color: var(--dark-text);
+}
+
+/* Encabezado del sitio: fondo semitransparente y flex */
+.site-header {
+    background: rgba(255, 255, 255, 0.6);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Tema oscuro: encabezado con fondo oscuro semitransparente */
+body.dark .site-header {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+/* Logo: tamaño, peso y color */
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--color1);
+}
+
+/* Tema oscuro: color alternativo para el logo */
+body.dark .logo {
+    color: var(--color2);
+}
+
+/* Enlaces de navegación: espaciado y color */
+.nav a {
+    margin-left: 1rem;
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+/* Tema oscuro: enlaces con color claro */
+body.dark .nav a {
+    color: var(--dark-text);
+}
+
+/* Hover en enlaces de navegación */
+.nav a:hover {
+    color: var(--color2);
+}
+
+/* Botón icono para alternar modo oscuro */
+.controls .icon-btn {
+    background: transparent;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border: none;
+}
+
+/* Contenido principal con scroll si es necesario */
+.main-content {
+    flex: 1;
+    overflow-y: auto;
+}
+
+/* Sección hero: centrado y padding */
+.hero {
+    text-align: center;
+    padding: 4rem 2rem;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+/* Botones: estilo base y efectos */
+.btn {
+    background: var(--color2);
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+.btn:hover {
+    background: var(--color3);
+}
+
+/* Secciones de características y sobre nosotros */
+.features,
+.about {
+    padding: 2rem;
+}
+
+.features h2,
+.about h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #fff;
+    background: var(--color1);
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+}
+
+/* Grillas de tarjetas y contenido */
+.feature-cards,
+.cards,
+.about-content {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.feature-cards {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.cards {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+/* Tarjetas, logros y items de gestión: fondo, padding y sombras */
+.card,
+.achievement,
+.manage-item {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Tema oscuro: tarjetas con fondo oscuro semitransparente */
+body.dark .card,
+body.dark .achievement,
+body.dark .manage-item {
+    background: rgba(50, 50, 50, 0.8);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.card h3,
+.achievement h3,
+.manage-item h3 {
+    margin-bottom: 0.75rem;
+}
+
+/* Logros y elementos gestionables: flex para alinear texto y botones */
+.achievement,
+.manage-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Sección about: color de texto adaptado a cada tema */
+.about-content p,
+.about-content ul {
+    color: var(--text-color);
+}
+
+body.dark .about-content p,
+body.dark .about-content ul {
+    color: var(--dark-text);
+}
+
+/* Imágenes GIF en about: centrado y estilo */
+.about-gifs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.about-gifs img {
+    max-width: 25%;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Pie de página: centrado y fondo semitransparente */
+.site-footer {
+    text-align: center;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.6);
+}
+
+body.dark .site-footer {
+    background: rgba(0, 0, 0, 0.6);
+}

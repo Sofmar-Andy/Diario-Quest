@@ -1,0 +1,354 @@
+/*
+ * Variables CSS para colores y gradientes.
+ * --color1 a --color4: Paleta de colores principales.
+ * --bg-gradient: Gradiente de fondo.
+ * --text-color: Color de texto principal.
+ */
+:root {
+    --color1: #8F87F1;
+    /* Color primario lila */
+    --color2: #C68EFD;
+    /* Color secundario lila claro */
+    --color3: #E9A5F1;
+    /* Color terciario rosa lila */
+    --color4: #FED2E2;
+    /* Color cuaternario rosa claro */
+    --bg-gradient: linear-gradient(135deg, var(--color1), var(--color4));
+    /* Gradiente diagonal */
+
+    /* Modos Claro/Oscuro para Login */
+    --text-color-light: #333;
+    --bg-color-light: var(--bg-gradient);
+    --card-bg-light: rgba(255, 255, 255, 0.95);
+    --input-bg-light: #fff;
+    --input-border-light: #ccc;
+    --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.1);
+    --link-color-light: var(--color1);
+
+    --text-color-dark: #e0e0e0;
+    --bg-color-dark: #1a1a2e; /* Un azul oscuro profundo para el fondo */
+    --card-bg-dark: rgba(40, 40, 60, 0.95); /* Un poco más claro y azulado que el negro puro */
+    --input-bg-dark: #2c2c44;
+    --input-border-dark: #555;
+    --shadow-dark: 0 4px 20px rgba(0, 0, 0, 0.25);
+    --link-color-dark: var(--color2);
+
+    --border-radius-main: 15px;
+    --border-radius-small: 8px;
+    --transition-speed: 0.3s ease;
+}
+
+/* Reset básico de márgenes, padding y box-sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos globales de body: fuente, fondo y layout flex vertical */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: var(--bg-color-light);
+    color: var(--text-color-light);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+body.dark {
+    background: var(--bg-color-dark);
+    color: var(--text-color-dark);
+}
+
+body.dark .logo {
+    color: var(--color2); /* Ajustar color del logo en modo oscuro si es necesario */
+}
+
+
+/* Encabezado del sitio: fondo semitransparente y layout flex */
+/* Si tienes un .site-header global, asegúrate que estos estilos no entren en conflicto
+   o que sean específicos para el contexto del login si es necesario.
+   Por ahora, el login.html no tiene un .site-header, sino un .login-header interno.
+*/
+
+/* Estilos para el header dentro del login-container */
+.login-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.login-header .logo {
+    font-size: 1.8rem; /* Un poco más grande para el login */
+    font-weight: bold;
+    color: var(--color1); /* Color del logo en modo claro */
+}
+
+body.dark .login-header .logo {
+    color: var(--color2); /* Color del logo en modo oscuro */
+}
+
+
+/* Logo: tamaño y color del texto (Estilo general, puede ser sobreescrito por .login-header .logo) */
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--color1);
+}
+
+/* Enlaces de navegación: espaciado y transición de color */
+.nav a {
+    margin-left: 1rem;
+    color: var(--text-color-light);
+    text-decoration: none;
+    transition: color var(--transition-speed);
+}
+
+.nav a:hover,
+body.dark .nav a:hover {
+    color: var(--color3);
+}
+body.dark .nav a {
+    color: var(--text-color-dark);
+}
+
+/* Sección hero central: centrado de texto y relleno */
+.hero {
+    text-align: center;
+    padding: 4rem 2rem;
+    flex: 1;
+    /* Ocupa el espacio restante */
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #fff; /* Asumiendo que el hero tiene fondo oscuro o gradiente */
+}
+
+.hero p {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    color: #f0f0f5; /* Asumiendo que el hero tiene fondo oscuro o gradiente */
+}
+
+/* Botones: fondo, padding y estilos de borde */
+.btn {
+    background: var(--color2);
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600; /* Un poco más de peso */
+    transition: background-color var(--transition-speed), transform var(--transition-speed);
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: inline-block; /* Para que el padding y margin funcionen bien */
+    text-align: center;
+}
+
+.btn:hover,
+body.dark .btn:hover {
+    background: var(--color3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Grid de tarjetas: auto-ajuste y gap */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.card h2 {
+    margin-bottom: 0.75rem;
+    color: var(--color1);
+}
+
+/* Pie de página del sitio: centrado y relleno */
+.site-footer {
+    text-align: center;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.6);
+}
+body.dark .site-footer {
+    background: rgba(25, 25, 25, 0.8); /* Fondo oscuro para footer */
+    color: var(--text-color-dark);
+}
+
+/* Página de login: centrado vertical y horizontal */
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem; /* Más padding lateral en móviles */
+    flex: 1; /* Para que ocupe el espacio vertical restante */
+}
+
+.login-container {
+    background: var(--card-bg-light);
+    padding: 2.5rem; /* Más padding interno */
+    border-radius: var(--border-radius-main);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    box-shadow: var(--shadow-light);
+    transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+body.dark .login-container {
+    background: var(--card-bg-dark);
+    box-shadow: var(--shadow-dark);
+}
+
+.login-container h1 {
+    margin-bottom: 0.5rem; /* Reducido para dar espacio al subtítulo */
+    color: var(--link-color-light);
+    font-size: 2rem;
+}
+body.dark .login-container h1 {
+    color: var(--link-color-dark);
+}
+
+.login-container .subtitle {
+    margin-bottom: 2rem;
+    font-size: 1rem;
+    color: var(--text-color-light);
+    opacity: 0.8;
+}
+body.dark .login-container .subtitle {
+    color: var(--text-color-dark);
+    opacity: 0.8;
+}
+
+/* Etiquetas e inputs del formulario de login */
+.login-form label {
+    display: block;
+    text-align: left;
+    margin: 0.75rem 0 0.35rem; /* Más margen */
+    color: var(--text-color-light);
+    font-weight: 500;
+}
+body.dark .login-form label {
+    color: var(--text-color-dark);
+}
+
+.login-form input {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--input-border-light);
+    background-color: var(--input-bg-light);
+    color: var(--text-color-light);
+    border-radius: var(--border-radius-small);
+    transition: border-color var(--transition-speed), background-color var(--transition-speed), color var(--transition-speed);
+}
+
+.login-form input:focus {
+    outline: none;
+    border-color: var(--color1);
+    box-shadow: 0 0 0 2px rgba(143, 135, 241, 0.3); /* Sombra al enfocar */
+}
+
+body.dark .login-form input {
+    border-color: var(--input-border-dark);
+    background-color: var(--input-bg-dark);
+    color: var(--text-color-dark);
+}
+
+body.dark .login-form input:focus {
+    border-color: var(--color2);
+    box-shadow: 0 0 0 2px rgba(198, 142, 253, 0.3);
+}
+
+/* Opciones alternativas: texto y enlace */
+.alt-options {
+    margin-top: 1.5rem; /* Más espacio antes de las opciones alternativas */
+}
+
+.alt-options p {
+    margin: 1rem 0 0.5rem;
+    color: var(--text-color-light);
+}
+body.dark .alt-options p {
+    color: var(--text-color-dark);
+}
+
+.alt-options a {
+    color: var(--link-color-light);
+    text-decoration: none;
+    font-weight: 500;
+}
+body.dark .alt-options a {
+    color: var(--link-color-dark);
+}
+.alt-options a:hover {
+    text-decoration: underline;
+}
+
+
+.alt-options .guest {
+    margin-top: 1rem; /* Espacio para el botón de invitado */
+    background: var(--color4);
+    color: var(--text-color-light); /* Texto más oscuro para contraste con fondo claro */
+    width: 100%; /* Hacer que ocupe todo el ancho */
+}
+body.dark .alt-options .guest {
+    background: var(--color1); /* Un color que destaque en modo oscuro */
+    color: white;
+}
+
+
+.alt-options .guest:hover,
+body.dark .alt-options .guest:hover {
+    background: var(--color3);
+    color: white; /* Asegurar contraste en hover */
+}
+
+/* Botón de modo oscuro */
+.icon-btn {
+    background: none;
+    border: none;
+    color: var(--text-color-light);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: color var(--transition-speed);
+}
+body.dark .icon-btn {
+    color: var(--text-color-dark);
+}
+.icon-btn:hover {
+    color: var(--color1);
+}
+body.dark .icon-btn:hover {
+    color: var(--color2);
+}
+
+/* Contenedor de mensajes */
+.message-container {
+    min-height: 1.5em; /* Para evitar saltos de layout */
+    margin-bottom: 1rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}

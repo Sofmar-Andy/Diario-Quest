@@ -1,0 +1,200 @@
+<!-- logros.html -->
+<!DOCTYPE html>
+<html lang="es">
+<!-- Inicio del documento HTML, configurado en español -->
+<head>
+    <!-- Metadatos esenciales para el navegador y la correcta visualización -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Título que aparecerá en la pestaña del navegador -->
+    <title>Logros - Diario Quest</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Enlace al archivo CSS específico para esta página de logros -->
+    <link rel="stylesheet" href="logros.css">
+</head>
+
+<body>
+    <!-- Encabezado del sitio, consistente en todas las páginas -->
+    <header class="site-header">
+        <div class="logo">♡Diario Quest</div>
+        <!-- Navegación principal del sitio -->
+        <nav class="nav">
+            <a href="index.html">Inicio</a>
+            <a href="metas.html">Metas</a>
+            <a href="logros.html" class="active">Logros</a> <!-- Enlace activo para la página actual -->
+            <a href="diario.html">Diario</a>
+            <a href="perfil.html">Perfil</a>
+        </nav>
+        <!-- Botón para alternar el modo oscuro/claro -->
+        <button id="darkModeToggle" class="btn icon-btn">🌙</button>
+    </header>
+
+    <main class="page-content">
+        <section class="achievements-overview">
+            <h1>Mis Logros</h1>
+            <p>¡Desbloquea insignias y recompensas completando tus metas y explorando Diario Quest!</p>
+            <!-- Contenedor para las tarjetas de logros predefinidos -->
+            <div class="achievement-cards">
+                <!-- Logro: Nivel Novato -->
+                <!-- Tarjeta de logro individual. 'unlocked' indica que ya se consiguió. 'data-achievement-id' es usado por JS. -->
+                <div class="achievement-card unlocked" data-achievement-id="novice_level">
+                    <div class="achievement-visual"> <!-- Sección para la imagen/insignia del logro -->
+                        <img src="badgeslevel1.png" alt="Insignia de Nivel Novato">
+                    </div>
+                    <div class="achievement-info">
+                        <h3>Nivel Novato</h3>
+                        <p class="achievement-description">Desbloquea tu potencial inicial.</p>
+                        <div class="achievement-requirements">
+                            <h4>Requisitos:</h4>
+                            <p>Completa tu primera meta.</p>
+                        </div>
+                        <div class="achievement-rewards">
+                            <h4>Recompensa:</h4>
+                            <p>+10 XP, Insignia "Iniciado".</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Logro: Maestro de Metas -->
+                <!-- Tarjeta de logro bloqueado. 'locked' indica que aún no se ha conseguido. -->
+                <div class="achievement-card locked" data-achievement-id="goal_master">
+                    <div class="achievement-visual"> <!-- Imagen por defecto para logros bloqueados -->
+                        <img src="badgeslock.png" alt="Insignia bloqueada">
+                        <!-- Cuando se desbloquee, podría ser: <img src="badges/goal_master_badge.png" alt="Insignia Maestro de Metas"> -->
+                    </div>
+                    <div class="achievement-info">
+                        <h3>Maestro de Metas</h3>
+                        <p class="achievement-description">Conquista tus objetivos uno por uno.</p>
+                        <div class="achievement-requirements">
+                            <h4>Requisitos:</h4>
+                            <p>Completa 10 metas.</p>
+                        </div>
+                        <div class="achievement-rewards">
+                            <h4>Recompensa:</h4>
+                            <p>+100 XP, Insignia "Estratega".</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Logro: Escritor Constante -->
+                <div class="achievement-card locked" data-achievement-id="consistent_writer">
+                    <div class="achievement-visual">
+                        <img src="badgeslock.png" alt="Insignia bloqueada">
+                        <!-- <img src="badges/writer_streak_badge.png" alt="Insignia Escritor Constante"> -->
+                    </div>
+                    <div class="achievement-info">
+                        <h3>Escritor Constante</h3>
+                        <p class="achievement-description">La constancia es clave para el autoconocimiento.</p>
+                        <div class="achievement-requirements">
+                            <h4>Requisitos:</h4>
+                            <p>Escribe en tu diario durante 7 días seguidos.</p>
+                        </div>
+                        <div class="achievement-rewards">
+                            <h4>Recompensa:</h4>
+                            <p>+50 XP, Desbloquea el tema "Serenidad Nocturna" para el diario.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Logro: Leyenda del Quest -->
+                <div class="achievement-card locked" data-achievement-id="quest_legend">
+                    <div class="achievement-visual">
+                        <img src="badgeslock.png" alt="Insignia bloqueada">
+                        <!-- <img src="badges/legend_badge.png" alt="Insignia Leyenda del Quest"> -->
+                    </div>
+                    <div class="achievement-info">
+                        <h3>Leyenda del Quest</h3>
+                        <p class="achievement-description">Has alcanzado la cima de la superación personal.</p>
+                        <div class="achievement-requirements">
+                            <h4>Requisitos:</h4>
+                            <p>Completa 50 metas.</p>
+                        </div>
+                        <div class="achievement-rewards">
+                            <h4>Recompensa:</h4>
+                            <p>+500 XP, Insignia "Héroe del Diario", Acceso prioritario a nuevas funciones.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección para los logros que el usuario puede crear por sí mismo -->
+        <section class="custom-achievements">
+            <h2>Mis Logros Personalizados</h2>
+            <!-- Botón para abrir el modal y añadir un nuevo logro personalizado -->
+            <button id="addCustomAchievement" class="btn btn-primary">Añadir Nuevo Logro</button>
+            <ul id="customList" class="custom-list achievement-cards"> <!-- Lista donde se mostrarán los logros personalizados -->
+                <!-- Los logros personalizados se añadirán aquí mediante JavaScript (logros.js) -->
+                <!-- Ejemplo de cómo podría verse un logro personalizado añadido dinámicamente:
+                <li class="achievement-card unlocked" data-achievement-id="custom_1">
+                    <div class="achievement-visual">
+                        <img src="badges/custom_badge_default.png" alt="Insignia Personalizada">
+                    </div>
+                    <div class="achievement-info">
+                        <h3>Mi Gran Aventura</h3>
+                        <p class="achievement-description">Logro definido por mí para recordar un hito.</p>
+                        <div class="achievement-requirements">
+                            <h4>Requisitos:</h4>
+                            <p>Completar mi desafío personal de lectura.</p>
+                        </div>
+                        <div class="achievement-rewards">
+                            <h4>Recompensa:</h4>
+                            <p>¡Satisfacción personal y un nuevo libro!</p>
+                        </div>
+                    </div>
+                </li>
+                -->
+            </ul>
+        </section>
+    </main>
+
+    <!-- Modal para Añadir Logro Personalizado -->
+    <!-- Este modal está oculto por defecto y se muestra con JavaScript. -->
+    <div id="addCustomAchievementModal" class="modal">
+        <div class="modal-content"> <!-- Contenido del modal -->
+            <!-- Botón para cerrar el modal -->
+            <span class="close-button" id="closeCustomAchievementModalBtn">&times;</span>
+            <h2>Añadir Logro Personalizado</h2>
+            <!-- Formulario para que el usuario defina su logro -->
+            <form id="customAchievementForm">
+                <div class="field">
+                    <label for="customAchTitle">Título del Logro:</label>
+                    <input type="text" id="customAchTitle" required> <!-- Campo obligatorio -->
+                </div>
+                <div class="field">
+                    <label for="customAchDesc">Descripción:</label>
+                    <textarea id="customAchDesc" required></textarea> <!-- Campo obligatorio -->
+                </div>
+                <div class="field">
+                    <label for="customAchReq">Requisitos (texto descriptivo):</label>
+                    <!-- Placeholder como ejemplo para el usuario -->
+                    <input type="text" id="customAchReq" placeholder="Ej: Leer 5 libros este mes">
+                </div>
+                <div class="field">
+                    <label for="customAchRew">Recompensa (texto descriptivo):</label>
+                    <input type="text" id="customAchRew" placeholder="Ej: Una tarde de relax, +20 Puntos de Voluntad">
+                </div>
+                <div class="field">
+                    <label for="customAchImgFile">Seleccionar Imagen para la Insignia (opcional):</label>
+                    <input type="file" id="customAchImgFile" accept="image/*"> <!-- Acepta cualquier tipo de imagen -->
+                </div>
+                <div class="field">
+                    <!-- XP que otorgará este logro personalizado al completarse -->
+                    <label for="customAchXP">XP Otorgado:</label>
+                    <input type="number" id="customAchXP" value="10" min="0" required> <!-- Valor por defecto 10, mínimo 0 -->
+                </div>
+                <!-- Botón para guardar el logro personalizado -->
+                <button type="submit" class="btn btn-primary">Guardar Logro</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <p>&copy; 2025 Diario Quest</p>
+    </footer>
+
+    <!-- Enlace al archivo JavaScript que maneja la lógica de esta página -->
+    <script src="logros.js"></script>
+</body>
+</html>
+</html>

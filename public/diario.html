@@ -1,0 +1,74 @@
+<!-- diario.html -->
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diario - Diario Quest</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="diario.css">
+</head>
+
+<body class="dark">
+    <header class="site-header">
+        <div class="logo">♡Diario Quest</div>
+        <nav class="nav">
+            <a href="index.html">Inicio</a> <!-- Corregido: Enlace a la página de Metas -->
+            <a href="metas.html">Metas</a>
+            <a href="logros.html">Logros</a>
+            <a href="diario.html" class="active">Diario</a>
+            <a href="perfil.html">Perfil</a>
+        </nav>
+        <button id="darkModeToggle" class="btn icon-btn"><i class="fas fa-moon"></i></button>
+    </header>
+
+    <main class="page-content">
+        <section class="journal-hero">
+            <h1>Mi Bitácora de Aventuras</h1>
+            <p>Un espacio para tus pensamientos, historias y reflexiones.</p>
+            <button id="openNewEntryModalBtn" class="btn btn-primary"><i class="fas fa-feather-alt"></i> Nueva Entrada</button>
+        </section>
+
+        <section id="journalEntriesSection" class="journal-entries-container">
+            <!-- Las entradas del diario se cargarán aquí dinámicamente por JS -->
+            <p class="no-entries-message hidden">Aún no has escrito ninguna entrada. ¡Anímate a empezar!</p>
+        </section>
+    </main>
+
+    <!-- Modal para Nueva Entrada de Diario -->
+    <div id="newEntryModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" id="closeNewEntryModalBtn"><i class="fas fa-times"></i></span>
+            <h2 id="entryModalTitle">Nueva Entrada en el Diario</h2>
+            <form id="journalEntryForm">
+                <input type="hidden" id="entry-id"> <!-- Para editar en el futuro -->
+                <div class="field">
+                    <label for="entry-title">Título:</label>
+                    <input type="text" id="entry-title" name="title" required>
+                </div>
+                <div class="field">
+                    <label for="entry-content">Contenido:</label>
+                    <textarea id="entry-content" name="content" rows="10" required></textarea>
+                </div>
+                <div class="field">
+                    <label for="entry-tags">Etiquetas (separadas por coma, opcional):</label>
+                    <input type="text" id="entry-tags" name="tags" placeholder="Ej: reflexión, ideas, viaje">
+                </div>
+                <div class="field">
+                    <label for="entry-image-url">URL de Imagen para la Entrada (opcional):</label>
+                    <input type="url" id="entry-image-url" name="imageUrl" placeholder="https://ejemplo.com/imagen.jpg">
+                </div>
+                <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Guardar Entrada</button>
+            </form>
+        </section>
+    </main>
+
+    <footer id="footer" class="site-footer">
+        <p>&copy; 2025 Diario Quest. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="diario.js"></script>
+</body>
+
+</html>

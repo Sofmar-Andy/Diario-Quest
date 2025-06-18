@@ -1,0 +1,572 @@
+/* public/metas.css */
+/* Hoja de estilos para la página de Metas */
+
+:root {
+    /* Definición de la paleta de colores principal, consistente con logros.css */
+    --color1: #8F87F1;
+    --color2: #C68EFD;
+    --color3: #E9A5F1;
+    --color4: #FED2E2;
+    --bg-gradient: linear-gradient(135deg, var(--color1), var(--color4));
+
+    /* Variables para el Modo Claro */
+    --text-color-light: #333;
+    --bg-color-light: var(--bg-gradient);
+    /* Fondo principal, puede ser gradiente o color sólido */
+    /* --bg-color-light: #f4f7f6; */
+    /* Alternativa de fondo sólido para modo claro */
+    --card-bg-light: rgba(255, 255, 255, 0.9);
+    --card-text-light: #333;
+    --header-bg-light: rgba(255, 255, 255, 0.8);
+    --modal-bg-light: #fdfdff;
+    --input-bg-light: #fff;
+    --input-border-light: #ccc;
+    --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.1);
+    /* Sombra suave para elementos elevados */
+    --completed-overlay-light: rgba(143, 241, 202, 0.3);
+    /* Color para el overlay de metas completadas (modo claro) */
+
+
+    /* Variables para el Modo Oscuro */
+    --text-color-dark: #e0e0e0;
+    --bg-color-dark: #121212;
+    --card-bg-dark: rgba(40, 40, 40, 0.95);
+    --card-text-dark: #e0e0e0;
+    --header-bg-dark: rgba(25, 25, 25, 0.9);
+    --modal-bg-dark: #2c2c2c;
+    --input-bg-dark: #333;
+    --input-border-dark: #555;
+    --shadow-dark: 0 4px 12px rgba(0, 0, 0, 0.3);
+    /* Sombra más pronunciada para modo oscuro */
+    --completed-overlay-dark: rgba(100, 255, 218, 0.2);
+    /* Color para el overlay de metas completadas (modo oscuro) */
+
+
+    /* Variables de diseño reutilizables */
+    --border-radius-main: 12px;
+    --border-radius-small: 6px;
+    --transition-speed: 0.3s;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    /* Aplicación inicial de colores para el modo claro */
+    background: var(--bg-color-light);
+    color: var(--text-color-light);
+    transition: background var(--transition-speed) ease, color var(--transition-speed) ease;
+    /* Transición suave para cambio de tema */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* Asegura que el footer quede abajo */
+}
+
+/* Estilos específicos cuando el body tiene la clase 'dark' (Modo Oscuro) */
+body.dark {
+    background: var(--bg-color-dark);
+    color: var(--text-color-dark);
+}
+
+/* Estilos para la cabecera del sitio (reutilizados de logros.css para consistencia) */
+.site-header {
+    background: var(--header-bg-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.07);
+    position: sticky;
+    /* Cabecera fija */
+    top: 0;
+    z-index: 100;
+    transition: background var(--transition-speed) ease;
+}
+
+body.dark .site-header {
+    background: var(--header-bg-dark);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+}
+
+/* Logo en la cabecera */
+.site-header .logo {
+    color: var(--color1);
+    font-size: 1.5rem;
+}
+
+body.dark .site-header .logo {
+    color: var(--color2);
+}
+
+/* Enlaces de navegación */
+.nav a {
+    margin-left: 1.5rem;
+    color: var(--text-color-light);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.nav a.active,
+.nav a:hover {
+    color: var(--color2);
+}
+
+body.dark .nav a {
+    color: var(--text-color-dark);
+}
+
+body.dark .nav a.active,
+body.dark .nav a:hover {
+    color: var(--color1);
+}
+
+/* Botón de cambio de tema */
+#darkModeToggle {
+    background: transparent;
+    color: var(--text-color-light);
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: color var(--transition-speed) ease, background-color var(--transition-speed) ease;
+}
+
+body.dark #darkModeToggle {
+    color: var(--text-color-dark);
+}
+
+#darkModeToggle:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+body.dark #darkModeToggle:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Contenedor principal del contenido de la página */
+.page-content {
+    padding: 2rem;
+    max-width: 1000px;
+    margin: 2rem auto;
+    flex-grow: 1;
+}
+
+/* Estilos para el contenedor del cuestionario inicial y la sección de visualización de metas */
+.survey-container,
+#goalsDisplaySection {
+    background: var(--card-bg-light);
+    padding: 2rem;
+    border-radius: var(--border-radius-main);
+    box-shadow: var(--shadow-light);
+    margin-bottom: 2rem;
+}
+
+body.dark .survey-container,
+body.dark #goalsDisplaySection {
+    background: var(--card-bg-dark);
+    box-shadow: var(--shadow-dark);
+}
+
+/* Títulos dentro de las secciones de cuestionario y metas */
+.survey-container h1,
+#goalsDisplaySection h1 {
+    text-align: center;
+    color: var(--color1);
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+body.dark .survey-container h1,
+body.dark #goalsDisplaySection h1 {
+    color: var(--color2);
+}
+
+.survey-container p,
+#goalsDisplaySection p {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.05rem;
+}
+
+/* Cabecera de la sección de metas (título y display de XP) */
+.goals-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+/* Estilo para el display de XP total del usuario */
+.xp-display {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color1);
+    background-color: rgba(143, 135, 241, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius-small);
+}
+
+body.dark .xp-display {
+    color: var(--color2);
+    background-color: rgba(198, 142, 253, 0.1);
+}
+
+/* Estilos para los campos de formulario (en cuestionario y modal de metas) */
+#surveyForm .field,
+#goalForm .field {
+    margin-bottom: 1.2rem;
+}
+
+#surveyForm label,
+#goalForm label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+/* Estilos para selects, inputs y textareas */
+#surveyForm select,
+#surveyForm input,
+#goalForm input,
+#goalForm textarea {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: var(--input-bg-light);
+    border: 1px solid var(--input-border-light);
+    color: var(--text-color-light);
+    border-radius: var(--border-radius-small);
+    box-sizing: border-box;
+    transition: border-color var(--transition-speed) ease, background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+
+body.dark #surveyForm select,
+body.dark #surveyForm input,
+body.dark #goalForm input,
+body.dark #goalForm textarea {
+    background-color: var(--input-bg-dark);
+    border: 1px solid var(--input-border-dark);
+    color: var(--text-color-dark);
+}
+
+/* Estilo al enfocar un campo de formulario */
+#surveyForm select:focus,
+#surveyForm input:focus,
+#goalForm input:focus,
+#goalForm textarea:focus {
+    outline: none;
+    border-color: var(--color1);
+    box-shadow: 0 0 0 2px rgba(143, 135, 241, 0.3);
+}
+
+body.dark #surveyForm select:focus,
+body.dark #surveyForm input:focus,
+body.dark #goalForm input:focus,
+body.dark #goalForm textarea:focus {
+    border-color: var(--color2);
+    box-shadow: 0 0 0 2px rgba(198, 142, 253, 0.3);
+}
+
+#goalForm textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+/* Botón primario (reutilizado de logros.css) */
+.btn-primary {
+    display: block;
+    /* Para centrar con margin auto */
+    margin: 1.5rem auto 0 auto;
+    background: var(--color1);
+    color: #fff;
+    border: none;
+    padding: 0.8rem 1.8rem;
+    border-radius: var(--border-radius-small);
+    cursor: pointer;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: background var(--transition-speed) ease, transform var(--transition-speed) ease;
+}
+
+.btn-primary:hover {
+    background: var(--color2);
+    transform: translateY(-2px);
+}
+
+body.dark .btn-primary {
+    background: var(--color2);
+    color: var(--bg-color-dark);
+}
+
+body.dark .btn-primary:hover {
+    background: var(--color3);
+}
+
+#openAddGoalModalBtn {
+    margin-bottom: 1.5rem;
+}
+
+/* Contenedor para las tarjetas de metas, usando CSS Grid */
+.goals-cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    /* Columnas flexibles */
+    gap: 1.5rem;
+}
+
+/* Estilos para cada tarjeta de meta individual */
+.goal-card {
+    background: var(--card-bg-light);
+    border-radius: var(--border-radius-main);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-light);
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    position: relative;
+    /* Necesario para el posicionamiento absoluto del overlay de completado */
+}
+
+/* Efecto hover en tarjetas de meta */
+.goal-card:hover {
+    transform: translateY(-5px);
+}
+
+body.dark .goal-card {
+    background: var(--card-bg-dark);
+    box-shadow: var(--shadow-dark);
+}
+
+/* Título de la meta dentro de la tarjeta */
+.goal-card h3 {
+    margin-top: 0;
+    color: var(--color1);
+}
+
+body.dark .goal-card h3 {
+    color: var(--color2);
+}
+
+/* Párrafos (descripción) dentro de la tarjeta de meta */
+.goal-card p {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+}
+
+/* XP de la meta */
+.goal-card .goal-xp {
+    font-size: 0.9rem;
+    color: var(--color3);
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+body.dark .goal-card .goal-xp {
+    color: var(--color4);
+}
+
+.goal-card .goal-due-date {
+    font-size: 0.85rem;
+    opacity: 0.8;
+    margin-bottom: 1rem;
+}
+
+.goal-card .btn-complete-goal,
+.goal-card .btn-undo-goal {
+    width: 100%;
+    padding: 0.6rem;
+    margin-top: 0.5rem;
+    border: none;
+    border-radius: var(--border-radius-small);
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color var(--transition-speed);
+}
+
+.goal-card .btn-complete-goal {
+    background-color: var(--color1);
+    color: white;
+}
+
+.goal-card .btn-complete-goal:hover {
+    background-color: var(--color2);
+}
+
+body.dark .goal-card .btn-complete-goal {
+    background-color: var(--color2);
+    color: var(--bg-color-dark);
+}
+
+body.dark .goal-card .btn-complete-goal:hover {
+    background-color: var(--color3);
+}
+
+/* Botón para deshacer la compleción de una meta */
+.goal-card .btn-undo-goal {
+    background-color: #aaa;
+    color: white;
+}
+
+.goal-card .btn-undo-goal:hover {
+    background-color: #888;
+}
+
+body.dark .goal-card .btn-undo-goal {
+    background-color: #666;
+}
+
+body.dark .goal-card .btn-undo-goal:hover {
+    background-color: #777;
+}
+
+/* Estilos para una tarjeta de meta que ha sido completada */
+.goal-card.completed {
+    opacity: 0.7;
+    /* Reduce la opacidad para distinguirla */
+}
+
+/* Overlay visual para metas completadas */
+.goal-card.completed::before {
+    content: 'COMPLETADA ✔';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--completed-overlay-light);
+    color: var(--color1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: var(--border-radius-main);
+    z-index: 1;
+    /* Asegura que el overlay esté por encima del contenido de la tarjeta */
+}
+
+body.dark .goal-card.completed::before {
+    background-color: var(--completed-overlay-dark);
+    color: var(--color2);
+}
+
+.goal-card.completed h3,
+.goal-card.completed p,
+.goal-card.completed .goal-xp,
+.goal-card.completed .goal-due-date {
+    position: relative;
+    z-index: 0;
+    /* Asegura que el texto de la tarjeta quede detrás del overlay */
+}
+
+/* Estilos para el Modal (reutilizados de logros.css) */
+.modal {
+    display: none;
+    /* Oculto por defecto, JS lo activa con .active */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition-speed) ease, visibility var(--transition-speed) ease;
+}
+
+/* Clase para mostrar el modal con transición */
+.modal.active {
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Contenido del modal */
+.modal-content {
+    background-color: var(--modal-bg-light);
+    color: var(--text-color-light);
+    margin: auto;
+    padding: 2rem;
+    border: none;
+    width: 90%;
+    max-width: 500px;
+    border-radius: var(--border-radius-main);
+    box-shadow: var(--shadow-dark);
+    position: relative;
+    transform: scale(0.95);
+    transition: transform var(--transition-speed) ease, background var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+
+.modal.active .modal-content {
+    transform: scale(1);
+}
+
+body.dark .modal-content {
+    background-color: var(--modal-bg-dark);
+    color: var(--text-color-dark);
+}
+
+/* Título dentro del modal */
+.modal-content h2 {
+    color: var(--color1);
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+body.dark .modal-content h2 {
+    color: var(--color2);
+}
+
+/* Botón de cerrar (X) en el modal */
+.close-button {
+    color: #888;
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 2rem;
+    font-weight: bold;
+    line-height: 1;
+    cursor: pointer;
+    transition: color var(--transition-speed) ease;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--color1);
+    text-decoration: none;
+}
+
+body.dark .close-button {
+    color: #aaa;
+}
+
+body.dark .close-button:hover,
+body.dark .close-button:focus {
+    color: var(--color2);
+}
+
+/* Clase de utilidad para ocultar elementos */
+.hidden {
+    display: none !important;
+}
+
+/* Pie de página del sitio (reutilizado) */
+.site-footer {
+    text-align: center;
+    padding: 1.5rem;
+    background: var(--header-bg-light);
+    color: var(--text-color-light);
+    margin-top: auto;
+    font-size: 0.9rem;
+    transition: background var(--transition-speed) ease, color var(--transition-speed) ease;
+    /* Para que cambie con el tema */
+}
+
+body.dark .site-footer {
+    background: var(--header-bg-dark);
+    color: var(--text-color-dark);
+}

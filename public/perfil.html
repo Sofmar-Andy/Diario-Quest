@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil - Diario Interactivo</title>
+    <!-- Asumiendo que tienes un CSS base o principal estilo.css para estilos comunes -->
+    <link rel="stylesheet" href="principal estilo.css">
+    <link rel="stylesheet" href="profile.css">
+    <!-- Font Awesome para iconos, asegúrate de tenerlo o reemplazarlo por tu librería de iconos preferida -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="logo">♡Diario Quest</div>
+        <nav class="nav">
+            <a href="index.html">Inicio</a>
+            <a href="metas.html">Metas</a>
+            <a href="logros.html">Logros</a>
+            <a href="diario.html">Diario</a>
+            <a href="perfil.html" class="active">Perfil</a>
+            <!-- <a href="login.html">Login</a> -->
+        </nav>
+        <div class="controls">
+            <button id="darkModeToggle" class="icon-btn"><i class="fas fa-moon"></i></button>
+        </div>
+    </header>
+
+    <main class="page-content">
+        <div class="profile-container">
+            <header class="profile-main-header">
+                <div class="profile-avatar-container">
+                    <!-- Dentro de profile.html, por ejemplo, en profile-avatar-container -->
+                    <img src="default-avatar.png" alt="Avatar de Usuario" id="userAvatar" class="profile-avatar">
+                    <!-- Botón para activar la subida de avatar -->
+                    <button id="triggerAvatarUploadBtn" class="btn-avatar-edit" title="Cambiar avatar">
+                        <i class="fas fa-camera"></i>
+                    </button>
+                    <input type="file" id="avatarUploadInput" accept="image/*" style="display: none;">
+                </div>
+                <div class="profile-user-info">
+                    <h1 id="usernameDisplay">NombreDeUsuario</h1>
+                    <p id="emailDisplay" class="user-email">usuario@ejemplo.com</p>
+                    <p id="joinDateDisplay" class="user-joindate">Miembro desde: Enero 1, 2024</p>
+                    <!-- En profile.html, quizás cerca del nombre de usuario o en las estadísticas -->
+                    <p>XP Total: <span id="userTotalXP">0</span></p>
+                    <p>Nivel: <span id="userLevel">1</span></p>
+
+                </div>
+            </header>
+
+            <section class="profile-stats-section">
+                <h2>Mis Estadísticas</h2>
+                <div class="profile-stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-bullseye stat-icon"></i>
+                        <h3 class="stat-title">Metas Completadas</h3>
+                        <p class="stat-value" id="goalsCompleted">12</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-trophy stat-icon"></i>
+                        <h3 class="stat-title">Logros Desbloqueados</h3>
+                        <p class="stat-value" id="achievementsUnlocked">5</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-book-open stat-icon"></i>
+                        <h3 class="stat-title">Entradas de Diario</h3>
+                        <p class="stat-value" id="journalEntries">30</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="profile-navigation-section">
+                <h2>Accesos Directos</h2>
+                <div class="quick-links-grid">
+                    <a href="metas.html" class="quick-link-card">
+                        <i class="fas fa-flag-checkered quick-link-icon"></i>
+                        <span>Mis Metas</span>
+                    </a>
+                    <a href="logros.html" class="quick-link-card">
+                        <i class="fas fa-award quick-link-icon"></i>
+                        <span>Mis Logros</span>
+                    </a>
+                    <a href="diario.html" class="quick-link-card">
+                        <i class="fas fa-feather-alt quick-link-icon"></i>
+                        <span>Mi Diario</span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="profile-actions-section">
+                <h2>Configuración</h2>
+                <div class="profile-actions-buttons">
+                    <button class="btn-profile-action" id="editProfileBtn"><i class="fas fa-user-edit"></i> Editar Perfil</button>
+                    <button class="btn-profile-action" id="changePasswordBtn"><i class="fas fa-key"></i> Cambiar Contraseña</button>
+                    <button class="btn-profile-action btn-logout" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2024 Diario Interactivo. Todos los derechos reservados.</p>
+    </footer>
+    <!-- <script src="principal.js"></script> Si tienes un script global, asegúrate que se cargue o que su funcionalidad esté en profile.js -->
+    <script src="profile.js"></script>
+</body>
+
+</html>

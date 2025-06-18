@@ -1,0 +1,13 @@
+{
+  "name": "diario-quest",
+  "version": "0.1.0",
+  "main": "Jsprincipal.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "mysql2": "^3.14.1",
+    "sqlite3": "^5.1.7"
+  }
+}
